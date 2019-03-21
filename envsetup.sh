@@ -31,7 +31,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 
 EOF
 
-    __print_aosp_functions_help
+    __print_aosep_functions_help
 
 cat <<EOF
 
@@ -45,7 +45,7 @@ EOF
     local T=$(gettop)
     local A=""
     local i
-    for i in `cat $T/build/envsetup.sh $T/vendor/aosp/build/envsetup.sh | sed -n "/^[[:blank:]]*function /s/function \([a-z_]*\).*/\1/p" | sort | uniq`; do
+    for i in `cat $T/build/envsetup.sh $T/vendor/aosep/build/envsetup.sh | sed -n "/^[[:blank:]]*function /s/function \([a-z_]*\).*/\1/p" | sort | uniq`; do
       A="$A $i"
     done
     echo $A
@@ -56,8 +56,8 @@ function build_build_var_cache()
 {
     local T=$(gettop)
     # Grep out the variable names from the script.
-    cached_vars=`cat $T/build/envsetup.sh $T/vendor/aosp/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`
-    cached_abs_vars=`cat $T/build/envsetup.sh $T/vendor/aosp/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_abs_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`
+    cached_vars=`cat $T/build/envsetup.sh $T/vendor/aosep/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`
+    cached_abs_vars=`cat $T/build/envsetup.sh $T/vendor/aosep/build/envsetup.sh | tr '()' '  ' | awk '{for(i=1;i<=NF;i++) if($i~/get_abs_build_var/) print $(i+1)}' | sort -u | tr '\n' ' '`
     # Call the build system to dump the "<val>=<value>" pairs as a shell script.
     build_dicts_script=`\builtin cd $T; build/soong/soong_ui.bash --dumpvars-mode \
                         --vars="$cached_vars" \
@@ -575,11 +575,11 @@ function print_lunch_menu()
     echo ""
     tput setaf 1;
     tput bold;
-    echo " ▄▄▄·       .▄▄ ·  ▄▄▄·▄▄▄ .▐▄• ▄ ▄▄▄▄▄▄▄▄ . ▐ ▄ ·▄▄▄▄  ▄▄▄ .·▄▄▄▄  "
-    echo "▐█ ▀█ ▪     ▐█ ▀. ▐█ ▄█▀▄.▀· █▌█▌▪•██  ▀▄.▀·•█▌▐███▪ ██ ▀▄.▀·██▪ ██ "
-    echo "▄█▀▀█  ▄█▀▄ ▄▀▀▀█▄ ██▀·▐▀▀▪▄ ·██·  ▐█.▪▐▀▀▪▄▐█▐▐▌▐█· ▐█▌▐▀▀▪▄▐█· ▐█▌"
-    echo "▐█ ▪▐▌▐█▌.▐▌▐█▄▪▐█▐█▪·•▐█▄▄▌▪▐█·█▌ ▐█▌·▐█▄▄▌██▐█▌██. ██ ▐█▄▄▌██. ██ "
-    echo " ▀  ▀  ▀█▄▀▪ ▀▀▀▀ .▀    ▀▀▀ •▀▀ ▀▀ ▀▀▀  ▀▀▀ ▀▀ █▪▀▀▀▀▀•  ▀▀▀ ▀▀▀▀▀• "
+    echo "Android open source extended project"
+    echo "Android open source extended project"
+    echo "Android open source extended project"
+    echo "Android open source extended project"
+    echo "Android open source extended project"
     tput sgr0;
     echo ""
     echo "                      Welcome to the device menu                      "
@@ -1752,4 +1752,4 @@ addcompletions
 
 export ANDROID_BUILD_TOP=$(gettop)
 
-. $ANDROID_BUILD_TOP/vendor/aosp/build/envsetup.sh
+. $ANDROID_BUILD_TOP/vendor/aosep/build/envsetup.sh
